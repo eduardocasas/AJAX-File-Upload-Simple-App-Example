@@ -1,0 +1,32 @@
+$(document).ready
+(
+    function ()
+    {
+        var xhr = new XMLHttpRequest();
+		$("#input_file").change
+        (
+            function(event)
+            {
+		        var file = event.target.files[0];
+                $.ajax
+                (
+                    {
+                        beforeSend: function(xhr)
+                        {
+                            xhr.setRequestHeader("X_FILENAME", file.name);
+                        },
+                        type: 'POST',
+                        url: 'ajax_controller.php',
+                        processData: false,
+                        data: file
+                    }
+                );
+/*
+
+			    xhr.open('POST', 'ajax_controller.php', true);
+			    xhr.setRequestHeader("X_FILENAME", file.name);
+			    xhr.send(file);
+  */          }
+        );
+	}
+);
